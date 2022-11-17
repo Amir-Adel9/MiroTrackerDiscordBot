@@ -29,7 +29,7 @@ const weightHandler = (message) => {
     message.author.send('gamed neek ybro');
 
     message.channel.send(
-      `3ash ybro \n Weight Lost: ${weightChange} \n Weight Loss Streak: ${weightLossStreak}`
+      `3ash ybro \nWeight Lost: ${message.content} \nWeight Loss Streak: ${weightLossStreak}\n Total Weight Change: ${weightChange}`
     );
   } else {
     weightLossStreak = 0;
@@ -38,7 +38,7 @@ const weightHandler = (message) => {
     message.author.send('a7a ybro');
 
     message.channel.send(
-      `khwl \n Weight gained: ${weightChange} \n Weight Gain Streak: ${weightGainStreak}`
+      `khwl \n Weight gained: ${weightChange} \n Weight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${weightChange}`
     );
   }
 };
