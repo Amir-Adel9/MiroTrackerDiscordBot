@@ -22,8 +22,6 @@ let weightLossStreak = 0;
 const weightHandler = (message) => {
   const weightChanged = message.content;
 
-  totalWeightChange += parseFloat(weightChanged);
-
   if (message.content === 'reset') {
     totalWeightChange = 0;
     weightGainStreak = 0;
@@ -40,6 +38,8 @@ const weightHandler = (message) => {
     return;
   }
 
+  totalWeightChange += parseFloat(weightChanged);
+
   if (weightChanged < 0) {
     weightGainStreak = 0;
     weightLossStreak++;
@@ -54,7 +54,9 @@ const weightHandler = (message) => {
     weightGainStreak++;
 
     message.channel.send(
-      `khwl\nWeight gained: ${weightChanged}\nWeight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${totalWeightChange}`
+      `khwl\nWeight gained: ${weightChanged}\nWeight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${totalWeightChange.toFixed(
+        2
+      )}`
     );
   }
 };
