@@ -41,6 +41,11 @@ const weightHandler = (message) => {
       `khwl \n Weight gained: ${weightChange} \n Weight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${weightChange}`
     );
   }
+
+  if (message.content === 'reset') {
+    weightChange = 0;
+    message.channel.send('Reset weight change to 0');
+  }
 };
 
 client.on('messageCreate', async (message) => {
@@ -49,10 +54,6 @@ client.on('messageCreate', async (message) => {
     weightHandler(message);
     if (message.content === 'kosmk') {
       message.author.send('kosmk enta ya khwal');
-    }
-    if (message.content === 'reset') {
-      count = 0;
-      message.channel.send('reset count to 0');
     }
   }
 });
