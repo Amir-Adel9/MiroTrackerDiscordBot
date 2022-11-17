@@ -22,7 +22,7 @@ let weightLossStreak = 0;
 const weightHandler = (message) => {
   const weightChanged = message.content;
 
-  totalWeightChange += parseFloat(weightChanged).toFixed(3);
+  totalWeightChange += parseFloat(weightChanged);
 
   if (message.content === 'reset') {
     totalWeightChange = 0;
@@ -34,7 +34,7 @@ const weightHandler = (message) => {
     return;
   }
 
-  if (!weightChanged) {
+  if (!parseFloat(weightChanged)) {
     message.channel.send('Ekteb rakam ym3rs');
 
     return;
@@ -45,7 +45,9 @@ const weightHandler = (message) => {
     weightLossStreak++;
 
     message.channel.send(
-      `3ash ybro\nWeight Lost: ${weightChanged}\nWeight Loss Streak: ${weightLossStreak}\nTotal Weight Change: ${totalWeightChange}`
+      `3ash ybro\nWeight Lost: ${weightChanged}\nWeight Loss Streak: ${weightLossStreak}\nTotal Weight Change: ${totalWeightChange.toFixed(
+        2
+      )}`
     );
   } else {
     weightLossStreak = 0;
