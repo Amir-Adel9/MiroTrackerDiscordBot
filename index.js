@@ -25,6 +25,10 @@ client.on('messageCreate', async (message) => {
     if (message.content === 'kosmk') {
       message.author.send('kosmk enta ya khwal');
     }
+    if (message.content === 'reset') {
+      count = 0.0;
+      message.channel.send('reset count to 0');
+    }
     count < 0
       ? message.author.send('gamed neek ybro')
       : message.author.send('a7a ybro');
