@@ -15,27 +15,29 @@ const client = new Client({
 
 client.login(process.env.DISCORD_TOKEN);
 
-let weightChange = 0;
+let totalWeightChange = 0;
 let weightGainStreak = 0;
 let weightLossStreak = 0;
 
 const weightHandler = (message) => {
-  weightChange += parseFloat(message.content);
+  const weightChanged = message.content;
+
+  totalWeightChange += parseFloat(weightChanged);
 
   if (message.content === 'reset') {
-    weightChange = 0;
-    message.channel.send('Reset weight change to 0');
+    totalWeightChange = 0;
+    message.channel.send('Reset total weight change to 0');
     return;
   }
 
-  if (weightChange < 0) {
+  if (weightChanged < 0) {
     weightGainStreak = 0;
     weightLossStreak++;
 
     message.author.send('gamed neek ybro');
 
     message.channel.send(
-      `3ash ybro\nWeight Lost: ${message.content}\nWeight Loss Streak: ${weightLossStreak}\nTotal Weight Change: ${weightChange}`
+      `3ash ybro\nWeight Lost: ${weightChanged}\nWeight Loss Streak: ${weightLossStreak}\nTotal Weight Change: ${totalWeightChange}`
     );
   } else {
     weightLossStreak = 0;
@@ -44,7 +46,7 @@ const weightHandler = (message) => {
     message.author.send('a7a ybro');
 
     message.channel.send(
-      `khwl\nWeight gained: ${message.content}\nWeight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${weightChange}`
+      `khwl\nWeight gained: ${weightChanged}\nWeight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${totalWeightChange}`
     );
   }
 };
