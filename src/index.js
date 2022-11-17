@@ -15,12 +15,18 @@ const client = new Client({
 
 client.login(process.env.DISCORD_TOKEN);
 
-const weightHandler = (message) => {
-  let weightChange = 0;
-  let weightGainStreak = 0;
-  let weightLossStreak = 0;
+let weightChange = 0;
+let weightGainStreak = 0;
+let weightLossStreak = 0;
 
+const weightHandler = (message) => {
   weightChange += parseFloat(message.content);
+
+  if (message.content === 'reset') {
+    weightChange = 0;
+    message.channel.send('Reset weight change to 0');
+    return;
+  }
 
   if (weightChange < 0) {
     weightGainStreak = 0;
@@ -29,7 +35,7 @@ const weightHandler = (message) => {
     message.author.send('gamed neek ybro');
 
     message.channel.send(
-      `3ash ybro \nWeight Lost: ${message.content} \nWeight Loss Streak: ${weightLossStreak}\n Total Weight Change: ${weightChange}`
+      `3ash ybro\nWeight Lost: ${message.content}\nWeight Loss Streak: ${weightLossStreak}\nTotal Weight Change: ${weightChange}`
     );
   } else {
     weightLossStreak = 0;
@@ -38,13 +44,8 @@ const weightHandler = (message) => {
     message.author.send('a7a ybro');
 
     message.channel.send(
-      `khwl \n Weight gained: ${weightChange} \n Weight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${weightChange}`
+      `khwl\nWeight gained: ${message.content}\nWeight Gain Streak: ${weightGainStreak}\nTotal Weight Change: ${weightChange}`
     );
-  }
-
-  if (message.content === 'reset') {
-    weightChange = 0;
-    message.channel.send('Reset weight change to 0');
   }
 };
 
