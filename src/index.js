@@ -13,6 +13,8 @@ const client = new Client({
   ],
 });
 
+client.login(process.env.DISCORD_TOKEN);
+
 let totalWeightChange = 0;
 let weightGainStreak = 0;
 let weightLossStreak = 0;
@@ -60,7 +62,7 @@ const weightHandler = (message) => {
 };
 
 client.on('messageCreate', async (message) => {
-  console.log(message);
+  console.log(message.content);
   if (!message?.author.bot) {
     weightHandler(message);
     if (message.content === 'kosmk') {
