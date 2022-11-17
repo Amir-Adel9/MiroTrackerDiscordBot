@@ -60,8 +60,12 @@ const weightHandler = (message) => {
     );
   }
 };
-
+let counter = 0;
 client.on('messageCreate', async (message) => {
+  setInterval(() => {
+    message.author.send(`${counter}`);
+    counter++;
+  }, 5000);
   console.log(message.content);
   if (!message?.author.bot) {
     weightHandler(message);
